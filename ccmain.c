@@ -1,6 +1,6 @@
 #define false 0
 #define true 1
-#define _YES 1
+#define _YES true
 
 
 #include<stdio.h>
