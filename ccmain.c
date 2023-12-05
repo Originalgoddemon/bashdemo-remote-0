@@ -7,6 +7,7 @@
 #include<stdlib.h>
 #include<assert.h>
 
+static char cater= '\0';
 
 int poliness(void)
 {
@@ -35,11 +36,48 @@ int poliness(void)
     #endif
 }
 
+int add_num()
+{
+    int number_one=0;
+    int number_two=0;
+    int number_the=0;
+    printf("Please select a language,1 is English,0 is Chinese \r\n");
+    cater =getchar();
+    cater -=48;
+    if (false == cater) 
+    {
+        printf("请输入需要相加的数字，以回车结束。\r\n");
+    }
+    else
+    {
+	printf("Please enter the numbers to be added to end with a carriage return \r\n");
+    }
+    scanf("%d%d",&number_one,&number_two);
+    number_the =number_two +number_one;
+    
+    return number_the;
+}
 
 
 
 int main(void)
 {
+    int variable=0; 
     poliness();
+    variable = add_num();
+    
+    if (false == cater)
+    {
+        printf("这两数相加数为 %d \r\n",variable);
+    }
+    else if (true == cater)
+    {
+ 	printf("ther seconds num add number is %d \r\n",variable);
+    }
+    else
+    {
+	printf(" %d \r\n",variable);
+    }
+
     return 0;
 }
