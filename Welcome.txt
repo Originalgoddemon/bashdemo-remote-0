@@ -1,0 +1,184 @@
+Welcome,friends!
+This is a test text!
+This is a test text!
+This is a test text!
+And are also ordinary public docunents.
+
+
+
+<stdio.h> std：标准，i:input输入，o：output输出
+
+system 函数：
+	需要C标准头文件库<stdlib.h>
+	执行系统命令：pause暂停，cmd，命令控制台，calc计算器，mspaint画图，notepad记事本,cls清屏...
+	system("command");：system("pause");
+:pause,cmd,calc,mspaint,notpad,cls
+
+
+command: gcc xxx.c -o xxx.exe的所有步骤有4个
+parameters == argments
+gcc编译四步骤
+	步骤		options选项	arguments参数		file status文件状态
+	  源文件   	<>		xxx.c			C语言源文件
+	1.预处理   	-E		xxx.i 			预处理文件
+command		gcc -E xxx.c -o xxx.i
+	1)头文件展开。	——不检查语法错误(有warning)。可以展开任意文件
+	2)宏定义替换。	——将宏名替换为宏值。		
+	3)替换注释。	——替换成空行。
+	4)展开条件编译。 	——根据条件来展开指令
+	5)
+
+	2.编译		-S		xxx.s			汇编文件
+command		gcc -S xxx.i -o xxx.s
+	1）编译过程会逐行检查语法错误。【重点】——整个编译4步骤中最耗时的的过程。
+	2）没有语法错误将C程序文件源代码翻译成汇编指令代码文件。得到汇编文件——xxx.s
+
+	3.汇编		-c		xxx.o			目标文件
+command		gcc -c xxx.s -o xxx.o
+	1）翻译,将汇编指令翻译成对应的二进制编码。
+
+	4.链接		<>		xxx.exe			可执行文件
+command		gcc xxx.o -o xxx.exe
+	1）数据段合并
+	2）数据地址回填
+	3）库引用
+																	-E:预处理选项	-S:编译选项	-c:汇编选项	-o:重命名选项
+
+
+源文件 .c -> <-E>预处理  预处理文件 .i -> <-S>编译  汇编文件 .s -> <-c>汇编  目标文件(二进制文件) .o -> <No option>链接  可执行文件 .exe
+-o 重命名
+
+-E预处理：展开头文件，宏替换，注释替换，展开条件编译
+-S编译：逐行检查语法错误【耗时】，没有语法错误翻译成汇编文件
+-c汇编：翻译成指定对应的二进制机器指令
+   链接：数据段合并，数据地址回填，库引用
+xxx.c可以直接跳过顺序步骤，生成对应的步骤 xxx.i xxx.s xxx.o xxx.exe 而且xxx.i xxx.s xxx.o 也是一样都可生成 最终文件 xxx.exe，只不过不能跃迁回流，只能滚动发展
+
+金字塔内存：CPU 寄存器 缓存 内存 外部内存
+【%d】：匹配格式符，占位格式符
+
+
+
+
+
+
+
+
+
+
+
+config 配置
+global 全局
+
+git 简单使用【备】
+命令之间都有空格空行【重点】
+git 常用命令 == Linux 常用命令
+
+摆列顺序 【<command>1options选项】	【{parameters}2arguments参数】	【3status状态】
+
+初始化0设置用户签名：首次安装设置   一次命令【真】：建议使用真的，但git不会验证真实性<git config --global user.name>   	<git config --global user.email>
+		git config --global user.name {用户名origin}	配置用户名
+		git config --global user.email {邮箱xxx.x@x}	配置用户邮箱
+	例子：git config --global user.name origin [CRLF]		git config --global user.email Originalgoddemon@users.noreply.github.com [CR]
+
+配置文件配置成功在家【home】目录下或者用户家目录下
+	查看配置文件内容：command：git config --global --list
+
+工作区本地库进行命令：熟能生巧【备】
+本地库1初始化本地库：创建 new folder 后使其成为本地库使用的命令 <git init> 
+		git init					初始化本地库
+	Empty【空的文件夹初始化】：git init [CR]
+				Initialized empty Git repository in Path：xxxx/.git/  		在 Path 中初始化了空的 Git 存储库	
+查看：<ll -a>	
+
+本地库2查看本地库状态：创建出有.git的本地库后查看状态 <git status>
+	Empty【如果初此创建没有提交任何东西】：git status
+					       On branch master						
+					       No commits yet
+					       nothing to commit (create/copy file and use "git add" to  track)
+【译文】
+					       在分支主机上
+					       还没有提交
+					       无需提交（创建/复制文件并使用“git add”进行跟踪）
+	如果有新增：git status
+		On branch master
+		No commits yet
+		Untracked files：
+		     (use "git add <file>..." to  include in what will be committed)
+		            【红色字体的文件名】
+
+		nothing added to commit but untracked files present (use "git add" to track)
+【译文】
+		在分支主机上
+		还没有提交
+		未跟踪的文件：
+		     （使用“git add<file>…”包含将提交的内容）
+		            【红色字体的文件名】
+
+		没有添加任何内容以提交，但存在未跟踪的文件（使用“git add”进行跟踪）
+
+vim：【ESC】命令模式   <yy>复制 <p>粘贴copy
+
+本地库3添加暂存区：有新文件提交进行跟踪<git add>
+		git add {文件名}
+postscript附言：如果是系统是win和linux有LF&CRLF冲突，但会自动转换：warning: in the working copy of 'ccmain.c', LF will be replaced by CRLF the next time Git touches it
+【译文】警告：在“ccmain. c”的工作副本中，LF将在下一个被CRLF替换时间Git触摸它
+
+ 	但新文件提交后会出现：且红色文件名成为了绿色字体带new file:的文件
+	Changes to be committed:
+  	     (use "git rm --cached <file>..." to unstage)
+       	               【绿色字体new file:   ccmain.c】
+【译文】要提交的更改：
+  	（使用“git rm--cached<file>…”卸载）
+        	                新文件：ccmain. c			【绿色字体new file:   ccmain.c】
+
+	没有提交的会继续以下显示：
+	Untracked files:
+  	     (use "git add <file>..." to include in what will be committed)
+	              【红色字体文件名】
+	              【redcolor filename】
+暂存区文件可以删掉<git rm --cached {file}>
+
+本地库4提交本地库：在暂存区的文件没有文件自己的历史版本，提交本地库：<git commit -m>
+		git commit -m {"日志信息"} {文件名}
+	例子：git commit -m "first commit" ccmain.c
+	       warning: in the working copy of 'ccmain.c', LF will be replaced by CRLF the next
+	       time Git touches it
+	       [master (root-commit) 289ac9a] first commit
+	       1 file changed, 45 insertions(+)
+	       create mode 100644 ccmain.c
+【译文】
+	       警告：在“ccmain. c”的工作副本中，LF将在下一个被CRLF替换
+	       时间Git触摸它
+	       [master（root提交）289ac9a]第一次提交
+	       1个文件更改，45个插入（+）
+	       创建模式100644 ccmain. c
+其中主干分支七位的十六进制码289ac9a为版本号
+如果使用命令<git status>因为提交了不会继续显示日志信息No commit yet ，如果暂存区没有新文件或者其他，就会显示nothing to commit, working rtee clean 否则显示nothing added to commit but untracked files present (use "git add" to track)
+
+查看版本信息命令：<git reflog> ：查看版本号，头指向，日志。查看详细日志命令：<git log>：查看详细的完整版本号，用户签名，日期，日志
+
+本地库5修改文件：模拟版本迭代,修改了文件<>
+	vim 文件名修改然后git status查看
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   ccmain.c
+【译文】
+在分支主机上
+未为提交暂存的更改：
+  （使用“git add<file>…”来更新将提交的内容）
+  （使用“git恢复<file>…”丢弃工作目录中的更改）
+        修改：ccmain. c
+说明这次修改还没有被提交被跟踪，确定修改：git add 提交到暂存区，git commit -m "" 提交到本地库，
+其中里面显示
+warning: in the working copy of 'ccmain.c', LF will be replaced by CRLF the next
+time Git touches it
+[master ce2d7d6] seconds commit
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+里面的 1 file changed, 1 insertion(+), 1 deletion(-) 【译文】 1个文件更改，1个插入（+），1个删除（-）【git是按照【行】来维护这个文件的】
+其中HEAD指针指向哪个版本就是当前用户所在的版本，就能用cat查看，虽然提交修改许多版本但工作区里面只有最新的版本文件
+
+本地库6文件版本历史穿梭<git reset --hard>
