@@ -46,7 +46,7 @@ int add_num()
     cater -=48;
     if (false == cater) 
     {
-        printf("请输入需要相加的数字，以回车结束。\r\n");
+        printf("請輸入需要相加的兩數,以回車結束。\r\n");
     }
     else
     {
@@ -68,7 +68,7 @@ int main(void)
     
     if (false == cater)
     {
-        printf("这两数相加数为 %d \r\n",variable);
+        printf("這兩數相加為 %d \r\n",variable);
     }
     else if (true == cater)
     {
